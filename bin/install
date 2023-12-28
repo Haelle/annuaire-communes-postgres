@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+./bin/download_data
+./bin/convert_xlsx_to_csv
+envsubst < sql/create_database.sql | psql -f -
+psql -d annuaire_communes -U annuaire_communes -f sql/create_tables.sql
+psql -d annuaire_communes -U annuaire_communes -c "\COPY cog FROM 'data/cog_2023.csv' DELIMITER ',' CSV HEADER;"
+psql -d annuaire_communes -U annuaire_communes -c "\COPY revenus FROM 'data/ircom_2022_revenus_2021/output_final.csv' DELIMITER ',' CSV HEADER"

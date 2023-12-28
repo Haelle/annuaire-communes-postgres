@@ -1,0 +1,38 @@
+#!/usr/bin/env ruby
+
+require 'yaml'
+require 'uri'
+require 'open3'
+require 'colorize'
+
+yaml_file = 'datasets.yml'
+
+datasets = YAML.load_file(yaml_file)
+
+datasets.each do |dataset|
+  url = dataset['url']
+  filename = dataset['filename']
+
+  command = "wget -nc '#{url}' -O 'data/#{filename}'"
+
+  stdout, stderr, status = Open3.capture3(command)
+
+  if status.success?
+    puts "Téléchargé : #{filename}"
+    extension = File.extname(filename)
+
+    if extension == '.zip'
+      unzip_command = "unzip data/#{filename} -d data/"
+      stdout, stderr, status = Open3.capture3(unzip_command)
+
+      if status.success?
+        puts "Dézippé: #{filename}"
+      else
+        puts "Erreur lors du dézippage de #{filename}: #{stderr}"
+      end
+    end
+  else
+    puts "Erreur lors du téléchargement de #{filename}: #{stderr}"
+  end
+end
+

@@ -1,0 +1,4 @@
+- url: 'https://www.data.gouv.fr/fr/datasets/r/5d5c4384-b19a-4ddf-910b-6e9cbaa8e1d6'
+  filename: 'cog_2023.csv'
+- url: 'https://www.data.gouv.fr/fr/datasets/r/261bc54d-d856-4d11-b4f8-f2b01e3073c6'
+  filename: 'revenus_2022_sur_2021.zip'

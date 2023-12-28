@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "Convert xlsx to csv"
+
+rm data/ircom_2022_revenus_2021/output_final.csv
+
+ssconvert data/ircom_2022_revenus_2021/ircom_communes_complet_revenus_2021.xlsx data/ircom_2022_revenus_2021/converted_to_csv.csv
+
+tail -n +9 data/ircom_2022_revenus_2021/converted_to_csv.csv > data/ircom_2022_revenus_2021/output_without_headers.csv
+
+echo 'Dép,Commune,"Libellé de la commune","Revenu fiscal de référence par tranche (en euros)","Nombre de foyers fiscaux","Revenu fiscal de référence des foyers fiscaux","Impôt net total","Nombre de foyers fiscaux imposés","Revenu fiscal de référence des foyers fiscaux imposés","Traitements et salaires Nombre de foyers concernés","Traitements et salaires montants","Retraites et pensions Nombre de foyers concernés","Retraites et pensions montants"' > header.csv
+
+cat header.csv data/ircom_2022_revenus_2021/output_without_headers.csv > data/ircom_2022_revenus_2021/output_final.csv
+
+# replace "n.c." with ""
+sed -i 's/n\.c\.//g' data/ircom_2022_revenus_2021/output_final.csv
+
+# replace -123,45 with -123.45
+sed -i 's/,"\(-\?[0-9]*\),\([0-9]*\)"/,"\1.\2"/g' data/ircom_2022_revenus_2021/output_final.csv
+
+rm header.csv data/ircom_2022_revenus_2021/output_without_headers.csv data/ircom_2022_revenus_2021/converted_to_csv.csv
