@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+tail -n +3 data/population.csv > data/population_cleaned.csv
+
+# replace "N/A - résultat non disponible" with ""
+sed -i 's/N\/A - résultat non disponible//g' data/population_cleaned.csv

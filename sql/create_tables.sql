@@ -1,5 +1,7 @@
 DROP TABLE cog;
 DROP TABLE revenus;
+DROP TABLE annuaire_education;
+DROP TABLE population;
 
 CREATE TABLE cog (
     TYPECOM VARCHAR(255),
@@ -32,3 +34,80 @@ CREATE TABLE revenus (
     Retraites_et_pensions_montants NUMERIC
 );
 
+CREATE TABLE annuaire_education (
+    identifiant_de_l_etablissement VARCHAR(255),
+    nom_etablissement VARCHAR(255),
+    type_etablissement VARCHAR(50),
+    statut_public_prive VARCHAR(50),
+    adresse_1 VARCHAR(255),
+    adresse_2 VARCHAR(255),
+    adresse_3 VARCHAR(255),
+    code_postal VARCHAR(10),
+    code_commune VARCHAR(10),
+    nom_commune VARCHAR(100),
+    code_departement VARCHAR(10),
+    code_academie VARCHAR(10),
+    code_region VARCHAR(10),
+    ecole_maternelle BOOLEAN,
+    ecole_elementaire BOOLEAN,
+    voie_generale BOOLEAN,
+    voie_technologique BOOLEAN,
+    voie_professionnelle BOOLEAN,
+    telephone VARCHAR(50),
+    fax VARCHAR(20),
+    web VARCHAR(255),
+    mail VARCHAR(255),
+    restauration BOOLEAN,
+    hebergement BOOLEAN,
+    ulis BOOLEAN,
+    apprentissage BOOLEAN,
+    segpa BOOLEAN,
+    section_arts BOOLEAN,
+    section_cinema BOOLEAN,
+    section_theatre BOOLEAN,
+    section_sport BOOLEAN,
+    section_internationale BOOLEAN,
+    section_europeenne BOOLEAN,
+    lycee_agricole BOOLEAN,
+    lycee_militaire BOOLEAN,
+    lycee_des_metiers BOOLEAN,
+    post_bac BOOLEAN,
+    appartenance_education_prioritaire VARCHAR(4),
+    greta BOOLEAN,
+    siren_siret VARCHAR(20),
+    nombre_d_eleves INTEGER,
+    fiche_onisep VARCHAR(255),
+    position VARCHAR(50),
+    type_contrat_prive VARCHAR(50),
+    libelle_departement VARCHAR(100),
+    libelle_academie VARCHAR(100),
+    libelle_region VARCHAR(100),
+    coordx_origine FLOAT,
+    coordy_origine FLOAT,
+    epsg_origine VARCHAR(10),
+    nom_circonscription VARCHAR(150),
+    latitude FLOAT,
+    longitude FLOAT,
+    precision_localisation VARCHAR(50),
+    date_ouverture DATE,
+    date_maj_ligne DATE,
+    etat VARCHAR(50),
+    ministere_tutelle VARCHAR(100),
+    multi_uai BOOLEAN,
+    rpi_concentre BOOLEAN,
+    rpi_disperse VARCHAR(6),
+    code_nature VARCHAR(10),
+    libelle_nature VARCHAR(100),
+    code_type_contrat_prive VARCHAR(10),
+    pial VARCHAR(8),
+    etablissement_mere VARCHAR(255),
+    type_rattachement_etablissement_mere VARCHAR(100),
+    code_zone_animation_pedagogique VARCHAR(10),
+    libelle_zone_animation_pedagogique VARCHAR(100)
+);
+
+CREATE TABLE population (
+  code_commune VARCHAR(5),
+  libelle_commune VARCHAR(200),
+  population INTEGER
+);
